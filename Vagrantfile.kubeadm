@@ -1,0 +1,15 @@
+# -*- mode: ruby -*-
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp-education/ubuntu-24-04"
+  config.vm.box_version = "0.1.0"
+  config.vm.provision "shell", name: "install-kubeadm", path: "install-kubeadm.sh"
+  config.vm.define "k8s-controller" do |k8s-c|
+    k8s-c.vm.hostname = "k8s-controller"
+    k8s-c.vm.network = "private_network", ip: "192.168.33.10"
+    k8s-c.memory = "2048"
+    k8s-c.cpu = 2
+  end
+  
+
+
+end
